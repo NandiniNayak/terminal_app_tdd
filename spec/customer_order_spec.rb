@@ -6,6 +6,7 @@
 # 5. should be able to get the item price
 # 6. should be able to choose the quantity
 # 7. should be able to retrieve the final bill
+require_relative "../customer_order.rb"
 
 describe CustomerOrder do
     before(:each) do
@@ -24,6 +25,7 @@ describe CustomerOrder do
         expect(@customer.menu).to eq(menu)
     end
     it "get item price based on user choice" do
+        @customer.menu
         user_choice = 1 
         expect(@customer.get_item_price(user_choice)).to eq(10)
     end
@@ -32,8 +34,9 @@ describe CustomerOrder do
     end
     it "should calculate the final bill" do
         # define your test dataset
+        @customer.menu
         user_choice = 1
         final_bill = @customer.get_item_price(user_choice) * @customer.get_quantity
-        expect(@customer.bill).to eq(final_bill)
+        expect(@customer.calculate_bill).to eq(final_bill)
     end
 end
